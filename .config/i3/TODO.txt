@@ -1,0 +1,7 @@
+- Arreglar el sonido y la iluminación
+	- Actualmente me va el sonido pero el boton del play solo inicia en pausa, no viceversa
+- Configurar para el tema del wifi
+- Hacer que haya un transición a la hora de cambiar de pestaña
+- Hacer que el runner de aplicaciones sea otro
+- Conseguir que me avise de forma decreciente que se ponga de otro color cuando baja del 15% y me avise
+	- Tiene que fijarse si está sin el cargador puesto
