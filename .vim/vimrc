@@ -1,0 +1,172 @@
+" GoodEmployeerBadFriend vimrc configuration version 1.1
+" First self-based vim configuration
+"
+"
+"                            ..,,,,,,,,,.. 
+"                      .,;%%%%%%%%%%%%%%%%%%%%;,. 
+"                    %%%%%%%%%%%%%%%%%%%%////%%%%%%, .,;%%;, 
+"             .,;%/,%%%%%/////%%%%%%%%%%%%%%////%%%%,%%//%%%, 
+"        .,;%%%%/,%%%///%%%%%%%%%%%%%%%%%%%%%%%%%%%%,////%%%%;, 
+"     .,%%%%%%//,%%%%%%%%%%%%%%%%@@%a%%%%%%%%%%%%%%%%,%%/%%%%%%%;, 
+"    .,%//%%%%//,%%%%///////%%%%%%%@@@%%%%%%///////%%%%,%%//%%%%%%%%, 
+"  ,%%%%%///%%//,%%//%%%%%///%%%%%@@@%%%%%////%%%%%%%%%,/%%%%%%%%%%%%% 
+" .%%%%%%%%%////,%%%%%%%//%///%%%%@@@@%%%////%%/////%%%,/;%%%%%%%%/%%% 
+" %/%%%%%%%/////,%%%%///%%////%%%@@@@@%%%///%%/%%%%%//%,////%%%%//%%%' 
+" %//%%%%%//////,%/%a`  'a%///%%%@@@@@@%%////a`  'a%%%%,//%///%/%%%%% 
+" %///%%%%%%///,%%%%@@aa@@%//%%%@@@@S@@@%%///@@aa@@%%%%%,/%////%%%%% 
+" %%//%%%%%%%//,%%%%%///////%%%@S@@@@SS@@@%%/////%%%%%%%,%////%%%%%' 
+" %%//%%%%%%%//,%%%%/////%%@%@SS@@@@@@@S@@@@%%%%/////%%%,////%%%%%' 
+" `%/%%%%//%%//,%%%///%%%%@@@S@@@@@@@@@@@@@@@S%%%%////%%,///%%%%%' 
+"   %%%%//%%%%/,%%%%%%%%@@@@@@@@@@@@@@@@@@@@@SS@%%%%%%%%,//%%%%%' 
+"   `%%%//%%%%/,%%%%@%@@@@@@@@@@@@@@@@@@@@@@@@@S@@%%%%%,/////%%' 
+"    `%%%//%%%/,%%%@@@SS@@SSs@@@@@@@@@@@@@sSS@@@@@@%%%,//%%//%' 
+"     `%%%%%%/  %%S@@SS@@@@@Ss` .,,.    'sS@@@S@@@@%'  ///%/%' 
+"       `%%%/    %SS@@@@SSS@@S.         .S@@SSS@@@@'    //%%' 
+"                /`S@@@@@@SSSSSs,     ,sSSSSS@@@@@' 
+"              %%//`@@@@@@@@@@@@@Ss,sS@@@@@@@@@@@'/ 
+"           %%%%@@00`@@@@@@@@@@@@@'@@@@@@@@@@@'//%% 
+"         %%%%%%a%@@@@000aaaaaaaaa00a00aaaaaaa00%@%%%%% 
+"     %%%%%%a%%@@@@@@@@@@000000000000000000@@@%@@%%%@%%% 
+"  %%%%%%a%%@@@%@@@@@@@@@@@00000000000000@@@@@@@@@%@@%%@%% 
+" %%%aa%@@@@@@@@@@@@@@0000000000000000000000@@@@@@@@%@@@%%%% 
+" %%@@@@@@@@@@@@@@@00000000000000000000000000000@@@@@@@@@%%%%%
+"
+"
+
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'ervandew/supertab'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'jnurmine/Zenburn'
+Plugin 'dylanaraps/wal.vim'
+Plugin 'relastle/bluewery.vim'
+
+call vundle#end()
+
+filetype plugin on
+
+set nu rnu
+
+syntax enable
+colorscheme wal
+
+"Fly mode in auto-pairs
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<M-b>'
+
+"Tab configuration
+set tabstop=2
+set shiftwidth=2
+
+" Make backspace work as you should expect
+set backspace =indent,eol,start
+" Switch between buffers without having to save first 
+set hidden
+" Show as much as possible of the last line
+set display =lastline
+" Highlite while searching with / or ?
+set incsearch
+" Keep matches highlighted 
+set hlsearch
+" Faster redrawing
+set ttyfast
+" Only redraw when necessary
+set cursorline
+" Search wrap around end-of-line
+set wrapscan
+" Always report changed lines
+set report =1
+" Max highlite the first 200 columns
+set synmaxcol =200
+" "Indent according to previous lìne
+set autoindent
+" Use inteligent indent for c
+set smartindent
+" Intelligent comment
+set comments=sl:/*,mb:\ *,elx:\ */
+
+
+ "Fugitive --> git Wrapper
+" Commands:
+"	git status --> :G || :Gstatus
+"	View any blob, tree, commit or tag --> :Gedit || :Gsplit || :Gvsplit || Gtabedit
+"	:Gdiffsplit
+"	:Gcommit, :Gmerge, :Grebase
+"	:Gpush, :Gfetch, :Gpull
+"	:Gblame
+"	:Gmove
+"	:Gbrowse
+"	:Gdelete
+
+"Ctrl-p configuration
+"Commands: :CtrlP or :CtrlP [starting-directory]
+"					:CtrlPBuffer or :CtrlPMRU
+"					:CtrlPMixed
+" Default mapping and default command to invoke CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+"NerdTree configuration
+"Commands: :NerdTree or :NerdTreeToggle
+"Open Nerd when only put vim command with no file
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif 
+"Open Nerd when open vim /directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+"Open nerd with ctrl-N
+map <C-n> :NERDTreeToggle<CR>
+" See hidden files
+let NERDTreeShowHidden=1
+
+" Make code look pretty
+let python_highlight_al=1
+syntax on
+
+"Set utf-8 support
+set encoding=utf-8
+
+
+"PowerLine configuration
+"set laststatus=2 " Always display the statusline in all windows
+"set showtabline=2 " Always display the tabline, even if there is only one tab
+"set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+"SimpylFold configuration
+let g:SimpylFold_docstring_preview = 1
+
+" Syntastic configurations
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" See correct configuration YouCompleteMe
+let g:ycm_use_clangd = 1
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+
+" Only a underline in actual position
+hi clear CursorLine
+hi CursorLine gui=underline cterm=underline
