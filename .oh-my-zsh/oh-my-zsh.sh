@@ -176,7 +176,12 @@ lfcd () {
       [ -d "$dir"  ] && [ "$dir" != "$(pwd)"  ] && cd "$dir"
     fi
 }
+
+# Execute ranger with Ctrl+O
 bindkey -s '^o' 'ranger\n'
+
+# Execute navi with Ctrl+Q
+bindkey -s '^q' 'navi\n'
 
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/shortcutrc"  ] && source "$HOME/.config/shortcutrc"

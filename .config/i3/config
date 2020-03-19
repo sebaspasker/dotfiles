@@ -232,7 +232,7 @@ bindsym XF86AudioNext exec playerctl next
 exec brave-browser
 
 # Screen detection
-exec_always --no-startup-id autorandr --change && feh --bg-fill ~/Imágenes/44.jpg --bg-fill ~/Imágenes/46.1.jpg 
+exec_always --no-startup-id autorandr --change && feh --bg-fill ~/.config/i3/wallpaper1.jpg --bg-fill ~/.config/i3/wallpaper2.jpg 
 
 # Archive explorer opening
 bindsym $mod+Shift+a exec nautilus
