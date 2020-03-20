@@ -32,7 +32,6 @@
 " %%@@@@@@@@@@@@@@@00000000000000000000000000000@@@@@@@@@%%%%%
 "
 "
-
 set nocompatible
 filetype off
 
@@ -42,7 +41,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'tmhedberg/SimpylFold'
@@ -50,9 +48,10 @@ Plugin 'ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'ycm-core/YouCompleteMe'
-Plugin 'jnurmine/Zenburn'
 Plugin 'dylanaraps/wal.vim'
-Plugin 'relastle/bluewery.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-commentary'
 
 call vundle#end()
 
@@ -111,14 +110,6 @@ set comments=sl:/*,mb:\ *,elx:\ */
 "	:Gbrowse
 "	:Gdelete
 
-"Ctrl-p configuration
-"Commands: :CtrlP or :CtrlP [starting-directory]
-"					:CtrlPBuffer or :CtrlPMRU
-"					:CtrlPMixed
-" Default mapping and default command to invoke CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 "NerdTree configuration
 "Commands: :NerdTree or :NerdTreeToggle
 "Open Nerd when only put vim command with no file
@@ -169,4 +160,6 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 " Only a underline in actual position
 hi clear CursorLine
-hi CursorLine gui=underline cterm=underline
+hi CusorLine gui=underline cterm=underline
+
+
