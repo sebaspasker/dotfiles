@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-MESSAGE1="/ $(cat /sys/class/power_supply/BAT1/capacity)% | / $(date)"
-MESSAGE2="CARGAR DISPOSITIVO / $(cat /sys/class/power_supply/BAT1/capacity)% | / $(date)"
-
 while :
 do
 	VOLUME="$(amixer get 'Master' | grep % | cut -d" " -f6)"
