@@ -5,8 +5,9 @@ MESSAGE2="CARGAR DISPOSITIVO / $(cat /sys/class/power_supply/BAT1/capacity)% 
 
 while :
 do
-	MESSAGE1="/ $(cat /sys/class/power_supply/BAT1/capacity)% | / $(date)"
-  MESSAGE2="CARGAR DISPOSITIVO / $(cat /sys/class/power_supply/BAT1/capacity)% | / $(date)"
+	VOLUME="$(amixer get 'Master' | grep % | cut -d" " -f6)"
+	MESSAGE1="/ $(cat /sys/class/power_supply/BAT1/capacity)% | $VOLUME | / $(light) | / $(date)"
+  MESSAGE2="CARGAR DISPOSITIVO / $(cat /sys/class/power_supply/BAT1/capacity)% | $VOLUME | / $(light) | / $(date)"
 	STATE=$(cat /sys/class/power_supply/BAT1/status )
 	CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity)
 	if [[ $STATE == 'Discharging' && (( $CAPACITY < 15 ))]]; then
