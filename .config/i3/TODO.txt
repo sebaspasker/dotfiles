@@ -1,7 +1,8 @@
-- Arreglar el sonido y la iluminación
+- Arreglar el sonido 
 	- Actualmente me va el sonido pero el boton del play solo inicia en pausa, no viceversa
-- Configurar para el tema del wifi
-- Hacer que haya un transición a la hora de cambiar de pestaña
+- Configurar launcher wifi manager
 - Hacer que el runner de aplicaciones sea otro
 - Conseguir que me avise de forma decreciente que se ponga de otro color cuando baja del 15% y me avise
-	- Tiene que fijarse si está sin el cargador puesto
+	- Hacer que lanze un mensaje cuando quede menos de 15%
+		- Hacer mediante otro bash script que compruebe cada minuto
+- Pendiente de automatizar un gestor de tipo de archivo en la carpeta de Descargas
