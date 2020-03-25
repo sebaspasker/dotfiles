@@ -1,5 +1,6 @@
 - Arreglar el sonido 
 	- Actualmente me va el sonido pero el boton del play solo inicia en pausa, no viceversa
+	- Configurar subida y bajada de altavoz, solo funciona con headphones de momento
 - Configurar launcher wifi manager
 - Hacer que el runner de aplicaciones sea otro
 - Conseguir que me avise de forma decreciente que se ponga de otro color cuando baja del 15% y me avise
