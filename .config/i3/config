@@ -235,6 +235,9 @@ bindsym XF86AudioNext exec playerctl next
 # Open files in init session
 exec brave-browser
 
+# Classify my download folder
+exec source ~/.config/scripts/downloadFilter.sh
+
 # Screen detection
 exec_always --no-startup-id autorandr --change && feh --bg-fill ~/.config/i3/wallpaper1.jpg --bg-fill ~/.config/i3/wallpaper2.jpg 
 

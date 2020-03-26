@@ -1,0 +1,9 @@
+tarFiles
+pdfFiles
+txtFiles
+rarFiles
+zipFiles
+jpgFiles
+jarFiles
+dirFolders
+otherFiles
