@@ -9,7 +9,7 @@ do
   MESSAGE2="CARGAR DISPOSITIVO / $BATTERY % | / $VOLUME % | / $LIGHT % | / $(date)"
 	STATE=$(cat /sys/class/power_supply/BAT1/status )
 	CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity)
-	if [[ $STATE == 'Discharging' && $(( $CAPACITY <= 15 )) ]]; then
+	if [[ "$STATE" == "Discharging" ]] && (( $CAPACITY < 15 )); then
 		echo $MESSAGE2
 	else
 		echo $MESSAGE1
