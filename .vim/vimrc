@@ -53,6 +53,7 @@ Plugin 'dylanaraps/wal.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-commentary'
+Plugin 'terryma/vim-multiple-cursors'
 
 call vundle#end()
 
