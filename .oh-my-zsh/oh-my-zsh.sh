@@ -20,8 +20,10 @@ fi
 fpath=($ZSH/functions $ZSH/completions $fpath)
 
 # Load all stock functions (from $fpath files) called below.
-autoload -U compaudit compinit
-
+autoload -Uz compaudit compinit
+compinit
+# Completion fot kitty
+kitty + complete setup zsh | source /dev/stdin
 
 
 # Set ZSH_CUSTOM to the path where your custom config files
@@ -196,11 +198,12 @@ bindkey '^R' history-incremental-search-backward
  # ( ) # Hide shell job control messages.
  (cat ~/.cache/wal/sequences &)
 
+ # Actually running with kitty
  # Alternative (blocks terminal for 0-3ms)
- cat ~/.cache/wal/sequences
+ # cat ~/.cache/wal/sequences
 
  # To add support for TTYs this line can be optionally added.
- source ~/.cache/wal/colors-tty.sh
+ # source ~/.cache/wal/colors-tty.sh
 
 # Enable color and change prompt
 #autoload -U colors && colors
