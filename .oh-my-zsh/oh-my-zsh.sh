@@ -185,34 +185,14 @@ bindkey -s '^o' 'ranger\n'
 # Execute navi with Ctrl+Q
 bindkey -s '^q' 'navi\n'
 
-# Load aliases and shortcuts if existent.
-[ -f "$HOME/.config/shortcutrc"  ] && source "$HOME/.config/shortcutrc"
-[ -f "$HOME/.config/aliasrc"  ] && source "$HOME/.config/aliasrc"
-
 # Ctrl+r implementation
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
- #Import colorscheme from 'wal' asynchronously
- # &   # Run the process in the background.
- # ( ) # Hide shell job control messages.
- (cat ~/.cache/wal/sequences &)
-
- # Actually running with kitty
- # Alternative (blocks terminal for 0-3ms)
- # cat ~/.cache/wal/sequences
-
- # To add support for TTYs this line can be optionally added.
- # source ~/.cache/wal/colors-tty.sh
-
-# Enable color and change prompt
-#autoload -U colors && colors
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-      
-#wal -R -n
-#clear
+# Neofetch
 neofetch
 
+# Autojump configuration
 export PROMPT_COMMAND="history -a"
 [[ -s /home/sebastianpasker/.autojump/etc/profile.d/autojump.sh  ]] && source /home/sebastianpasker/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
