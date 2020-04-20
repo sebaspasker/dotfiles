@@ -1,0 +1,19 @@
+# Copy
+"xte 'keydown Control_L' 'key C' 'keyup Control_L'"
+	b:9
+
+# Cut
+"xte 'keydown Control_L' 'key X' 'keyup Control_L'"
+	b:8
+
+# Paste
+"xte 'keydown Control_L' 'key V' 'keyup Control_L'"
+	b:2
+
+# Next tag
+"xte 'keydown Super_L' 'key Tab' 'keyup Super_L'"
+	b:6
+
+# Previous tag
+"xte 'keydown Super_L' 'key Q' 'keyup Super_L'"
+	b:7

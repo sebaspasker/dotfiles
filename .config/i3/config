@@ -20,8 +20,7 @@ font pango:System San Francisco Display 10
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# Before i3 v4.8, we used to recommend this one as the default: # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
@@ -45,7 +44,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec i3-dmenu-desktop --dmenu='dmenu -fn "System San Francisco Display" -b -nb "#282A33" -nf "#eeeeee" -sb "#4B9CB2"'
 
-indsym $mod+Shift+d exec rofi -show run -lines 3 -eh 2 
+bindsym $mod+Shift+d exec rofi -show run -lines 3 -eh 2 
 
 # change focus
 bindsym $mod+h focus left
@@ -267,3 +266,9 @@ bindsym $mod+Shift+i		gaps outer current minus 5
 
 # Open windows explorer Brave Browser
 bindsym $mod+b exec brave-browser
+
+# Wifi config
+exec --no-startup-id nm-applet
+
+# Keybinding start
+exec --no-startup-id xbindkeys
