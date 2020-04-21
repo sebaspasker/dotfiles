@@ -245,7 +245,7 @@ exec_always --no-startup-id autorandr --change && feh --bg-fill ~/.config/i3/wal
 bindsym $mod+Shift+a exec nautilus
 
 # Transparent terminal
-exec_always compton -f --fade-delta=3
+exec_always compton -f --fade-delta=1
 
 # Lock
 bindsym $mod+Shift+x exec i3lock -c "#282A33" -f -p win

@@ -15,16 +15,8 @@ if [ "$DISABLE_AUTO_UPDATE" != "true" ]; then
 fi
 
 # Initializes Oh My Zsh
-
 # add a function path
 fpath=($ZSH/functions $ZSH/completions $fpath)
-
-# Load all stock functions (from $fpath files) called below.
-autoload -Uz compaudit compinit
-compinit
-# Completion fot kitty
-kitty + complete setup zsh | source /dev/stdin
-
 
 # Set ZSH_CUSTOM to the path where your custom config files
 # and plugins exists, or else we will use the default custom/
@@ -100,101 +92,4 @@ for config_file ($ZSH_CUSTOM/*.zsh(N)); do
 done
 unset config_file
 
-# Load the theme
-if [[ "$ZSH_THEME" == "random" ]]; then
-  if [[ "${(t)ZSH_THEME_RANDOM_CANDIDATES}" = "array" ]] && [[ "${#ZSH_THEME_RANDOM_CANDIDATES[@]}" -gt 0 ]]; then
-    themes=($ZSH/themes/${^ZSH_THEME_RANDOM_CANDIDATES}.zsh-theme)
-  else
-    themes=($ZSH/themes/*zsh-theme)
-  fi
-  N=${#themes[@]}
-  ((N=(RANDOM%N)+1))
-  RANDOM_THEME=${themes[$N]}
-  source "$RANDOM_THEME"
-  echo "[oh-my-zsh] Random theme '$RANDOM_THEME' loaded..."
-else
-  if [ ! "$ZSH_THEME" = ""  ]; then
-    if [ -f "$ZSH_CUSTOM/$ZSH_THEME.zsh-theme" ]; then
-      source "$ZSH_CUSTOM/$ZSH_THEME.zsh-theme"
-    elif [ -f "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme" ]; then
-      source "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme"
-    else
-      source "$ZSH/themes/$ZSH_THEME.zsh-theme"
-    fi
-  fi
-fi
-
-
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)   # Include hidden files.
-
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
-
-#change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd  ]] ||
-     [[ $1 = 'block'  ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main  ]] ||
-       [[ ${KEYMAP} == viins  ]] ||
-       [[ ${KEYMAP} = ''  ]] ||
-       [[ $1 = 'beam'  ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-      echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
-
-# Use lf to switch directories and bind it to ctrl-o
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp"  ]; then
-      dir="$(cat "$tmp")"
-      rm -f "$tmp"
-      [ -d "$dir"  ] && [ "$dir" != "$(pwd)"  ] && cd "$dir"
-    fi
-}
-
-# Execute ranger with Ctrl+O
-bindkey -s '^o' 'ranger\n'
-
-# Execute navi with Ctrl+Q
-bindkey -s '^q' 'navi\n'
-
-# Ctrl+r implementation
-bindkey -v
-bindkey '^R' history-incremental-search-backward
-
-# Neofetch
-neofetch
-
-# Autojump configuration
-export PROMPT_COMMAND="history -a"
-[[ -s /home/sebastianpasker/.autojump/etc/profile.d/autojump.sh  ]] && source /home/sebastianpasker/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-export HISTCONTROL=ignoredups
-alias l.='ls -d .* --color=auto'
+source "$ZSH/themes/$ZSH_THEME.zsh-theme"
