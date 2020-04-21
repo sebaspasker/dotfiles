@@ -11,6 +11,8 @@ from __future__ import (absolute_import, division, print_function)
 
 # You can import any python module as needed.
 import os
+import ranger.api
+import subprocess
 
 # You always need to import ranger.api.commands here to get the Command class:
 from ranger.api.commands import Command
@@ -60,3 +62,62 @@ class my_edit(Command):
         # This is a generic tab-completion function that iterates through the
         # content of the current directory.
         return self._tab_directory_content()
+
+
+class mkcd(Command):
+    """
+    :mkcd <dirname>
+
+    Creates a directory with the name <dirname> and enters it.
+    """
+
+    def execute(self):
+        from os.path import join, expanduser, lexists
+        from os import makedirs
+        import re
+
+        dirname = join(self.fm.thisdir.path, expanduser(self.rest(1)))
+        if not lexists(dirname):
+            makedirs(dirname)
+
+            match = re.search('^/|^~[^/]*/', dirname)
+            if match:
+                self.fm.cd(match.group(0))
+                dirname = dirname[match.end(0):]
+
+            for m in re.finditer('[^/]+', dirname):
+                s = m.group(0)
+                if s == '..' or (s.startswith('.') and not self.fm.settings['show_hidden']):
+                    self.fm.cd(s)
+                else:
+                    ## We force ranger to load content before calling `scout`.
+                    self.fm.thisdir.load_content(schedule=False)
+                    self.fm.execute_console('scout -ae ^{}$'.format(s))
+        else:
+            self.fm.notify("file/directory exists!", bad=True)
+
+
+HOOK_INIT_OLD = ranger.api.hook_init
+
+
+def hook_init(fm):
+    def update_autojump(signal):
+        subprocess.Popen(["autojump", "--add", signal.new.path])
+
+    fm.signal_bind('cd', update_autojump)
+    HOOK_INIT_OLD(fm)
+
+
+ranger.api.hook_init = hook_init
+
+
+class j(Command):
+    """:j
+    Uses autojump to set the current directory.
+    """
+
+    def execute(self):
+        directory = subprocess.check_output(["autojump", self.arg(1)])
+        directory = directory.decode("utf-8", "ignore")
+        directory = directory.rstrip('\n')
+        self.fm.execute_console("cd " + directory)
