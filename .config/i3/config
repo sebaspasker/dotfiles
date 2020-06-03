@@ -216,7 +216,7 @@ bar {
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-#bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle > /dev/null
 
 # Sreen brightness controls
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -239,7 +239,7 @@ exec brave-browser
 exec ~/.config/scripts/downloadFilter.sh
 
 # Screen detection
-exec_always --no-startup-id autorandr --change && feh --bg-fill ~/.config/i3/wallpaper1.jpg --bg-fill ~/.config/i3/wallpaper2.jpg 
+exec_always --no-startup-id autorandr --change && feh --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
 
 # Archive explorer opening
 bindsym $mod+Shift+a exec nautilus
@@ -248,9 +248,9 @@ bindsym $mod+Shift+a exec nautilus
 exec_always compton -f --fade-delta=1
 
 # Lock
-bindsym $mod+Shift+x exec i3lock -c "#282A33" -f -p win
+bindsym $mod+Shift+x exec i3lock -i ~/.config/wallpaper/wallpaper1.png -t -c "#282A33" -f -p win && systemctl suspend
  
-# Border
+# Border && systemctl suspend
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 1
 

@@ -27,7 +27,7 @@ for file in ~/Descargas/*;do
 		"jar" || "JAR") [ ! -d ~/Descargas/jarFiles ] && mkdir ~/Descargas/jarFiles
 		mv $file ~/Descargas/jarFiles/
 		;;
-		"mp4" || "MP4" || "mp3" || "MP3") [ ! -d ~/Descargas/mp4Files ] && mkdir ~/Descargas/mp4Files
+		"mp4" || "MP4" || "mp3" || "MP3" || "AVI" || "avi") [ ! -d ~/Descargas/mp4Files ] && mkdir ~/Descargas/mp4Files
 		mv $file ~/Descargas/mp4Files/
 		;;
 		*) 
