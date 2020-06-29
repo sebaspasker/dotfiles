@@ -1,5 +1,4 @@
-"
-"GoodEmployeerBadFriend vimrc configuration version 1.1
+" vimrc configuration version 1.1
 " First self-based vim configuration
 "
 "
@@ -43,7 +42,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'preservim/nerdtree'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
@@ -52,10 +50,12 @@ Plugin 'dylanaraps/wal.vim'								" Pywal theme
 Plugin 'tpope/vim-surround'								" Surround stuff
 Plugin 'tpope/vim-repeat'									" . Repetition
 Plugin 'tpope/vim-commentary' 						" Comments
-Plugin 'terryma/vim-multiple-cursors'			" Multiple cursors 
 Plugin 'kballard/vim-swift.git' 					" Swift Syntax
 Plugin 'wlangstroth/vim-racket' 					" Scheme Racket Syntax
 Plugin 'zxqfl/tabnine-vim' 								" AI autocompleter
+Plugin 'stevearc/vim-arduino'             " Arduino
+Plugin 'mattn/emmet-vim'									" HTML
+Plugin 'file:///home/sebastianpasker/.vim/externalPlugins/django.vim' " Syntax django
 "  Mirar coc
 "  Mirar junegunn/fzf, {'do': {-> fzf#install()}}
 "  junegunn/fzf --> Hace falta estas dos
@@ -69,7 +69,7 @@ colorscheme wal
 
 "Fly mode in auto-pairs
 let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutBackInsert = '<M-b>'
+let g:AutoPairsShortcutBackInsert = '<c-x>'
 
 "Tab configuration
 set tabstop=2
@@ -115,19 +115,6 @@ set comments=sl:/*,mb:\ *,elx:\ */
 "	:Gbrowse
 "	:Gdelete
 
-"NerdTree configuration
-"Commands: :NerdTree or :NerdTreeToggle
-"Open Nerd when only put vim command with no file
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif 
-"Open Nerd when open vim /directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-"Open nerd with ctrl-N
-map <C-m> :NERDTreeToggle<CR>
-" See hidden files
-let NERDTreeShowHidden=1
-
 " Make code look pretty
 let python_highlight_al=1
 syntax on
@@ -161,6 +148,9 @@ let g:syntastic_check_on_wq = 0
 
 " Temporary swift syntastic
 "let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+" HTML
+let g:syntastic_html_checkers = ['validator', 'w3']
+let g:syntastic_python_checkers = ['python', 'flake8', 'pyflakes', 'pycodestyle', 'pep8']
 
 " See correct configuration YouCompleteMe
 let g:ycm_use_clangd = 1
@@ -207,9 +197,10 @@ let g:syntastic_enable_racket_racket_checker = 1
 " TabNine::config to configuration
 
 " Spell
-set spell
+" set spell
 set spelllang=es_es
 
+" Relative in normal mode and absolute in insert mode
 set number relativenumber
 
 augroup numbertoggle
@@ -217,3 +208,33 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
+
+" Arduino
+" Status Bar
+nnoremap <buffer> <leader>am :ArduinoVerify<CR>
+nnoremap <buffer> <leader>au :ArduinoUpload<CR>
+nnoremap <buffer> <leader>ad :ArduinoUploadAndSerial<CR>
+nnoremap <buffer> <leader>ab :ArduinoChooseBoard<CR>
+nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
+
+" my_file.ino [arduino:avr:uno] [arduino:usbtinyisp] (/dev/ttyACM0:9600)
+" function! MyStatusLine()
+"   let port = arduino#GetPort()
+"   let line = '%f [' . g:arduino_board . '] [' . g:arduino_programmer . ']'
+"   if !empty(port)
+"     let line = line . ' (' . port . ':' . g:arduino_serial_baud . ')'
+"   endif
+"   return line
+" endfunction
+" setl statusline=%!MyStatusLine()
+
+" Emmet
+" html:5_ <c-y>,
+
+" Usefull for element/func listing without preliminar references to TabNine
+" <c-x><c-o>
+" Omnicompletion
+autocmd FileType python3 set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS

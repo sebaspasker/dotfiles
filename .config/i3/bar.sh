@@ -17,8 +17,8 @@ do
 	VOLUME="$(amixer get 'Master' | grep % | cut -d" " -f6 )"
 	LIGHT="$(light | cut -c1-3)"
 	BATTERY="$(cat /sys/class/power_supply/BAT1/capacity)"
-	MESSAGE1="[$BATTERY%] | $VOLUME | [$LIGHT%] | / $(date)"
-  MESSAGE2="CARGAR DISPOSITIVO [$BATTERY%] | $VOLUME | [$LIGHT%] | / $(date)"
+	MESSAGE1="[$BATTERY%] |  $VOLUME | [$LIGHT%] |  / $(date)"
+  MESSAGE2="CARGAR DISPOSITIVO [$BATTERY%] |  $VOLUME | [$LIGHT%] |  / $(date)"
 	STATE=$(cat /sys/class/power_supply/BAT1/status )
 	if [[ "$STATE" == "Discharging" ]] && (( $BATTERY < 15 )); then
 		echo $MESSAGE2

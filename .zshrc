@@ -89,7 +89,8 @@ bindkey -v
 bindkey '^R' history-incremental-search-backward
 
 # Neofetch
-neofetch
+# clear
+# neofetch --kitty ~/.config/wallpaper/wallpaper1.jpg --size 23% --gap 3
 
 # Autojump configuration
 export PROMPT_COMMAND="history -a"

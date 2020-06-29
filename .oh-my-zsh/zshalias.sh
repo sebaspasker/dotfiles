@@ -22,3 +22,7 @@ alias cdped="cd  ~/Documentos/UA/2º/PED"
 alias cdada="cd  ~/Documentos/UA/2º/ADA"
 alias cdhada="cd  ~/Documentos/UA/2º/HADA"
 alias cdlpp="cd  ~/Documentos/UA/2º/LPP"
+
+# Set Python3 as defaul and pip
+alias python="python3"
+alias pip="pip3"
