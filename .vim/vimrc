@@ -1,4 +1,4 @@
-" vimrc configuration version 1.1
+" vimrc configuration version 1.2
 " First self-based vim configuration
 "
 "
@@ -31,18 +31,17 @@
 " %%%aa%@@@@@@@@@@@@@@0000000000000000000000@@@@@@@@%@@@%%%% 
 " %%@@@@@@@@@@@@@@@00000000000000000000000000000@@@@@@@@@%%%%%
 "
-"
+
 set nocompatible
 filetype off
+
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'tmhedberg/SimpylFold'
 Plugin 'ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'									 
@@ -50,15 +49,7 @@ Plugin 'dylanaraps/wal.vim'								" Pywal theme
 Plugin 'tpope/vim-surround'								" Surround stuff
 Plugin 'tpope/vim-repeat'									" . Repetition
 Plugin 'tpope/vim-commentary' 						" Comments
-Plugin 'kballard/vim-swift.git' 					" Swift Syntax
-Plugin 'wlangstroth/vim-racket' 					" Scheme Racket Syntax
 Plugin 'zxqfl/tabnine-vim' 								" AI autocompleter
-Plugin 'stevearc/vim-arduino'             " Arduino
-Plugin 'mattn/emmet-vim'									" HTML
-Plugin 'file:///home/sebastianpasker/.vim/externalPlugins/django.vim' " Syntax django
-"  Mirar coc
-"  Mirar junegunn/fzf, {'do': {-> fzf#install()}}
-"  junegunn/fzf --> Hace falta estas dos
 
 call vundle#end()
 
@@ -102,26 +93,12 @@ set smartindent
 " Intelligent comment
 set comments=sl:/*,mb:\ *,elx:\ */
 
-
- "Fugitive --> git Wrapper
-" Commands:
-"	git status --> :G || :Gstatus
-"	View any blob, tree, commit or tag --> :Gedit || :Gsplit || :Gvsplit || Gtabedit
-"	:Gdiffsplit
-"	:Gcommit, :Gmerge, :Grebase
-"	:Gpush, :Gfetch, :Gpull
-"	:Gblame
-"	:Gmove
-"	:Gbrowse
-"	:Gdelete
-
 " Make code look pretty
 let python_highlight_al=1
 syntax on
 
 "Set utf-8 support
 set encoding=utf-8
-
 
 "PowerLine configuration
 "set laststatus=2 " Always display the statusline in all windows
@@ -131,10 +108,27 @@ set encoding=utf-8
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-" Enable folding with the spacebar
-nnoremap <space> za
 "SimpylFold configuration
 let g:SimpylFold_docstring_preview = 1
+
+
+" Only a underline in actual position
+hi clear CursorLine
+hi CusorLine gui=underline cterm=underline
+
+filetype on
+filetype indent on
+filetype plugin on
+
+" Relative in normal mode and absolute in insert mode
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 
 " Syntastic configurations
 set statusline+=%#warningmsg#
@@ -179,57 +173,14 @@ let g:ycm_csharp_server_port = 0
 highlight YcmErrorLine guibg=#3f0000
 let g:ycm_show_diagnostics_ui = 0
 
-" Only a underline in actual position
-hi clear CursorLine
-hi CusorLine gui=underline cterm=underline
-
 let g:html5_event_handler_attributes_complete = 1
 let g:html5_rdfa_attributes_complete = 1
 let g:html5_microdata_attributes_complete = 1
 let g:html5_aria_attributes_complete = 1
 
-filetype on
-filetype indent on
-filetype plugin on
-
-let g:syntastic_enable_racket_racket_checker = 1
-
-" TabNine::config to configuration
-
 " Spell
 " set spell
 set spelllang=es_es
-
-" Relative in normal mode and absolute in insert mode
-set number relativenumber
-
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
-" Arduino
-" Status Bar
-nnoremap <buffer> <leader>am :ArduinoVerify<CR>
-nnoremap <buffer> <leader>au :ArduinoUpload<CR>
-nnoremap <buffer> <leader>ad :ArduinoUploadAndSerial<CR>
-nnoremap <buffer> <leader>ab :ArduinoChooseBoard<CR>
-nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
-
-" my_file.ino [arduino:avr:uno] [arduino:usbtinyisp] (/dev/ttyACM0:9600)
-" function! MyStatusLine()
-"   let port = arduino#GetPort()
-"   let line = '%f [' . g:arduino_board . '] [' . g:arduino_programmer . ']'
-"   if !empty(port)
-"     let line = line . ' (' . port . ':' . g:arduino_serial_baud . ')'
-"   endif
-"   return line
-" endfunction
-" setl statusline=%!MyStatusLine()
-
-" Emmet
-" html:5_ <c-y>,
 
 " Usefull for element/func listing without preliminar references to TabNine
 " <c-x><c-o>
@@ -238,3 +189,4 @@ autocmd FileType python3 set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+

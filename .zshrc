@@ -1,45 +1,28 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Created by newuser for 5.8
+# Mirar arch wiki zsh
+# Para aprender ejecutar zsh-newuser-install
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/sebastianpasker/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="agnoster"
-ZSH_THEME="strug"
-#ZSH_THEME="darkblood"
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
 
 #History in cach directory:
 HISTSIZE=10000
 SAVEHIST=10000
 
-source ~/.oh-my-zsh/oh-my-zsh.sh
-
-# Load all stock functions (from $fpath files) called below.
-autoload -Uz compaudit compinit
-compinit
-# Completion fot kitty
-kitty + complete setup zsh | source /dev/stdin
-
-# source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
 
-# Alias
-source ~/.config/zsh/zshalias.sh
-
-plugin=(git)
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Basic auto/tab complete:
-autoload -U compinit
+autoload -U compinit promptinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)   # Include hidden files.
+
+
+# This will set the default prompt to the walters theme
+promptinit
+prompt redhat
 
 # vi mode
 bindkey -v
@@ -81,9 +64,6 @@ bindkey '^e' edit-command-line
 # Execute ranger with Ctrl+O
 bindkey -s '^o' 'ranger\n'
 
-# Execute navi with Ctrl+Q
-bindkey -s '^q' 'navi\n'
-
 # Ctrl+r implementation
 bindkey -v
 bindkey '^R' history-incremental-search-backward
@@ -96,5 +76,6 @@ bindkey '^R' history-incremental-search-backward
 export PROMPT_COMMAND="history -a"
 [[ -s /home/sebastianpasker/.autojump/etc/profile.d/autojump.sh  ]] && source /home/sebastianpasker/.autojump/etc/profile.d/autojump.sh
 export HISTCONTROL=ignoredups
-alias l.='ls -d .* --color=auto'
+alias l.='ls -d .* --color=auto'dev/null
 
+source /home/sebas_pasker/.config/zsh/alias.zsh

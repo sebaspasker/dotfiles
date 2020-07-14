@@ -2,9 +2,12 @@
 
 - .config 
   - gtk-{2..4}.0 --> gtk
-  - i3 --> config file, wallpapers and bar
-  - kitty --> config file 
+  - [Deprecated] i3 --> config file, wallpapers and bar
+  - [Deprecated] kitty --> config file 
+	- dwm (patches -> autostart, ru_gaps; Coloscheme with pywal)
+	- st (patches -> focus, hidecursor, scrollback, vertcenter; Coloscheme with pywal)
   - ranger --> config file
   - scripts --> filter automation in download folder
-- .oh-my-zsh && .zshrc --> zsh and alias
+- [Deprecated] .oh-my-zsh 
+- .zshrc --> zsh and alias
 - .xkindkey --> mouse buttons shortcuts  
