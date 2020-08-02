@@ -45,11 +45,14 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'									 
-Plugin 'dylanaraps/wal.vim'								" Pywal theme
-Plugin 'tpope/vim-surround'								" Surround stuff
-Plugin 'tpope/vim-repeat'									" . Repetition
-Plugin 'tpope/vim-commentary' 						" Comments
-Plugin 'zxqfl/tabnine-vim' 								" AI autocompleter
+Plugin 'dylanaraps/wal.vim'													" Pywal theme
+Plugin 'tpope/vim-surround'													" Surround stuff
+Plugin 'tpope/vim-repeat'														" . Repetition
+Plugin 'tpope/vim-commentary' 											" Comments
+Plugin 'zxqfl/tabnine-vim' 													" AI autocompleter
+Plugin  'junegunn/fzf', { 'do': { -> fzf#install()  }} " fzf
+Plugin 'junegunn/fzf.vim'
+" Probar COC
 
 call vundle#end()
 
@@ -144,7 +147,10 @@ let g:syntastic_check_on_wq = 0
 "let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 " HTML
 let g:syntastic_html_checkers = ['validator', 'w3']
-let g:syntastic_python_checkers = ['python', 'flake8', 'pyflakes', 'pycodestyle', 'pep8']
+let g:syntastic_python_checkers = ['python', 'flake8', 'pyflakes', 'pycodestyle', 'pep8', 'pep257', 'pydocstyle']
+let g:syntastic_cpp_checkers = ['gcc']
+
+set completeopt+=preview
 
 " See correct configuration YouCompleteMe
 let g:ycm_use_clangd = 1
@@ -172,14 +178,17 @@ let g:ycm_auto_stop_csharp_server = 1
 let g:ycm_csharp_server_port = 0
 highlight YcmErrorLine guibg=#3f0000
 let g:ycm_show_diagnostics_ui = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_add_preview_to_completeopt = 1
 
 let g:html5_event_handler_attributes_complete = 1
 let g:html5_rdfa_attributes_complete = 1
 let g:html5_microdata_attributes_complete = 1
 let g:html5_aria_attributes_complete = 1
-
 " Spell
 " set spell
+set nospell
 set spelllang=es_es
 
 " Usefull for element/func listing without preliminar references to TabNine
@@ -190,3 +199,36 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
+set viminfo='10,<100,:100,%,n~/.vim/.viminfo
+
+" fzf commands -->
+" :Files [PATH]
+" :GFiles [OPTS]
+" :Buffers
+" :Colors
+" :Ag [PATH] ag search result (ALT-A to select all, ALT-D to deselect all)
+" (search code)
+" :Rg [Pattern] rg search result (ALT-A to select all, ALT-D to deselect all)
+" (search patterns Regex)
+" :Lines [QUERY]	Lines in loaded buffers
+" :BLines [QUERY]	Lines in the current buffer
+" :Tags [QUERY]	Tags in the project (ctags -R)
+" :BTags [QUERY]	Tags in the current buffer
+" :Marks	Marks
+" :Windows	Windows
+" :Locate PATTERN	locate command output
+" :History	v:oldfiles and open buffers
+" :History:	Command history
+" :History/	Search history
+" :Snippets	Snippets (UltiSnips)
+" :Commits	Git commits (requires fugitive.vim)
+" :BCommits	Git commits for the current buffer
+" :Commands	Commands
+" :Maps	Normal mode mappings
+" :Helptags	Help tags 1
+" :Filetypes	File types
+"
+" Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
+" tab, a new split, or in a new vertical split
+
+let g:fzf_preview_window = 'right:60%' " Always file previsualization

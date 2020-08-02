@@ -67,7 +67,6 @@ class my_edit(Command):
 class mkcd(Command):
     """
     :mkcd <dirname>
-
     Creates a directory with the name <dirname> and enters it.
     """
 
@@ -87,10 +86,11 @@ class mkcd(Command):
 
             for m in re.finditer('[^/]+', dirname):
                 s = m.group(0)
-                if s == '..' or (s.startswith('.') and not self.fm.settings['show_hidden']):
+                if s == '..' or (s.startswith('.')
+                                 and not self.fm.settings['show_hidden']):
                     self.fm.cd(s)
                 else:
-                    ## We force ranger to load content before calling `scout`.
+                    # We force ranger to load content before calling `scout`.
                     self.fm.thisdir.load_content(schedule=False)
                     self.fm.execute_console('scout -ae ^{}$'.format(s))
         else:

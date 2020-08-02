@@ -5,3 +5,38 @@ xcompmgr -c &
 /home/sebas_pasker/.profile
 /home/sebas_pasker/.config/scripts/filter.sh
 
+datex() {
+	echo "$( date "+%m/%d/%y" )"
+}
+
+timex() {
+	echo "$( date "+%H:%M:%S" )"
+}
+
+lightx() {
+	echo "$(light | cut -c1-3 )"
+}
+
+volx() {
+	echo "$(pamixer --get-volume)"
+}
+
+battx() {
+	echo "$(cat /sys/class/power_supply/BAT1/capacity)"
+}
+
+memx() {
+	echo "$(free -h | sed -n '2p' | cut -d ' ' -f18)"
+}
+
+cpux() {
+	echo "$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}' \
+			| cut -c1-4)"
+}
+
+while true; do
+	xsetroot -name "MEM $(memx) - CPU $(cpux)% - LIGHT $(lightx)% - VOL $(volx)% - BATT $(battx)% - TIME $(datex) $(timex)"
+	sleep 1
+done &
+
+

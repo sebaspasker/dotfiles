@@ -33,8 +33,8 @@
 # set default-fg "#94cf95"
 
 set render-loading true
-set render-loading-fg "#1a1725"
-set render-loading-bg "#94cf95"
+# set render-loading-fg "#1a1725"
+# set render-loading-bg "#94cf95"
 
 # Recolor mode settings
 # 

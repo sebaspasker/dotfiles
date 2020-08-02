@@ -7,16 +7,17 @@
 # ( ) # Hide shell job control messages.
 (cat ~/.cache/wal/sequences &)
 
+stty stop undef		# Disable ctrl-s to freeze terminal.
+
 #History in cach directory:
 HISTSIZE=10000
 SAVEHIST=10000
-
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
+HISTFILE=~/.cache/zsh/history
 
 autoload -U compinit promptinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+compinit -u
 _comp_options+=(globdots)   # Include hidden files.
 
 
@@ -68,14 +69,24 @@ bindkey -s '^o' 'ranger\n'
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+
 # Neofetch
 # clear
 # neofetch --kitty ~/.config/wallpaper/wallpaper1.jpg --size 23% --gap 3
 
 # Autojump configuration
 export PROMPT_COMMAND="history -a"
-[[ -s /home/sebastianpasker/.autojump/etc/profile.d/autojump.sh  ]] && source /home/sebastianpasker/.autojump/etc/profile.d/autojump.sh
+[[ -s /home/sebas_pasker/.autojump/etc/profile.d/autojump.sh  ]] && source /home/sebas_pasker/.autojump/etc/profile.d/autojump.sh
 export HISTCONTROL=ignoredups
 alias l.='ls -d .* --color=auto'dev/null
 
 source /home/sebas_pasker/.config/zsh/alias.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
+
+# Start Docker daemon automatically when logging in if not running.
+RUNNING=`ps aux | grep dockerd | grep -v grep`
+if [ -z "$RUNNING" ]; then
+    sudo dockerd > /dev/null 2>&1 &
+    disown
+fi

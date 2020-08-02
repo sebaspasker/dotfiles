@@ -96,7 +96,7 @@ unsigned int tabspaces = 8;
 #include "/home/sebas_pasker/.cache/wal/colors-wal-st.h"
 
 /* bg opacity */
-float alpha = 0.9, alphaUnfocused = 0.8;
+float alpha = 0.80, alphaUnfocused = 0.65;
 
 /* Terminal colors (16 first used in escape sequence) */
 /* static const char *colorname[] = { */
