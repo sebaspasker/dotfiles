@@ -22,7 +22,7 @@ alias lns="ln -s"
 
 # Other
 alias pl="pdflatex"
-alias actualizarDot="~/.config/scripts/actualizarDot.sh"
+alias dotUpdate="~/.config/scripts/actualizarDot.sh"
 
 # Config files
 alias xvim="vim ~/.vim/vimrc"

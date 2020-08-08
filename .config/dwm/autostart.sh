@@ -17,6 +17,9 @@ xcompmgr -c &
 # Notifications
 killall notification-daemon &> /dev/null
 
+# Battery notifications
+~/.config/scripts/battery_notifications.sh &
+
 datex() {
 	echo "$( date "+%m/%d/%y" )"
 }

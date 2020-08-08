@@ -14,7 +14,7 @@ cp $file_name ~/.config/wallpaper/wallpaper2.jpg
 cd ~/.config/st && sudo make clean install
 
 # dwm
-# Comment SchemeUrg
+# Comment Colors from wal (already in dwm)
 sed '13,18s/^/\/\//g' ~/.cache/wal/colors-wal-dwm.h > ~/.cache/wal/.colors-dwm.h \
 	&& mv ~/.cache/wal/.colors-dwm.h ~/.cache/wal/colors-wal-dwm.h
 cd ~/.config/dwm && sudo make clean install

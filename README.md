@@ -11,3 +11,4 @@
 - [Deprecated] .oh-my-zsh 
 - .zshrc --> zsh and alias
 - .xkindkey --> mouse buttons shortcuts  
+- dunst --> notify-send (pending of configuration)
