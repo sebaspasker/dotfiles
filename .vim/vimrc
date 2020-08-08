@@ -1,4 +1,4 @@
-" vimrc configuration version 1.2
+"" vimrc configuration version 1.2
 " First self-based vim configuration
 "
 "
@@ -52,7 +52,9 @@ Plugin 'tpope/vim-commentary' 											" Comments
 Plugin 'zxqfl/tabnine-vim' 													" AI autocompleter
 Plugin  'junegunn/fzf', { 'do': { -> fzf#install()  }} " fzf
 Plugin 'junegunn/fzf.vim'
+Plugin 'mattn/emmet-vim'                            " Emmet
 " Probar COC
+Plugin 'tweekmonster/django-plus.vim'               " Django
 
 call vundle#end()
 
@@ -146,10 +148,9 @@ let g:syntastic_check_on_wq = 0
 " Temporary swift syntastic
 "let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 " HTML
-let g:syntastic_html_checkers = ['validator', 'w3']
+let g:syntastic_html_checkers = ['validator']
 let g:syntastic_python_checkers = ['python', 'flake8', 'pyflakes', 'pycodestyle', 'pep8', 'pep257', 'pydocstyle']
 let g:syntastic_cpp_checkers = ['gcc']
-
 set completeopt+=preview
 
 " See correct configuration YouCompleteMe

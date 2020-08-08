@@ -2,13 +2,13 @@
 #include "/home/sebas_pasker/.cache/wal/colors-wal-dwm.h"
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const int gappx     = 7;                 /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "mononoki-Regular:size=12" };
-static const char dmenufont[]       = "mononoki-Regular:size=12";
+static const char *fonts[]          = { "JetBrainsMono-Regular:size=12" };
+static const char dmenufont[]       = "JetBrainsMono-Regular:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -119,6 +119,8 @@ static Key keys[] = {
 	// LIGHT
 	{ 0, XF86XK_MonBrightnessUp,		spawn,		SHCMD("light -A 5") },
 	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("light -U 5") },
+	// SUSPEND
+	{ MODKEY|ShiftMask,             XK_z,		spawn,     SHCMD("systemctl suspend") },
 };
 
 /* button definitions */

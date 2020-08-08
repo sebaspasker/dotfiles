@@ -32,7 +32,7 @@
 # set default-bg "#1a1725"
 # set default-fg "#94cf95"
 
-set render-loading true
+# set render-loading true
 # set render-loading-fg "#1a1725"
 # set render-loading-bg "#94cf95"
 
@@ -40,8 +40,8 @@ set render-loading true
 # 
 # 
 
-# set recolor-lightcolor $var1
-# set recolor-darkcolor $var2
+set recolor-lightcolor "#1e1913"
+set recolor-darkcolor "#b3b8ba"
 
 # Startup options
 # 

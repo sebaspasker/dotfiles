@@ -1,9 +1,21 @@
+# Screens
 xrandr --output eDP-1 --auto --right-of HDMI-1
-# feh --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
-feh --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
+
+# Wallpapers
+feh --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
+# feh --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
+
+# Transparency
 xcompmgr -c &
+
+# Profile
 /home/sebas_pasker/.profile
+
+# Download filter
 /home/sebas_pasker/.config/scripts/filter.sh
+
+# Notifications
+killall notification-daemon &> /dev/null
 
 datex() {
 	echo "$( date "+%m/%d/%y" )"

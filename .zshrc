@@ -69,7 +69,9 @@ bindkey -s '^o' 'ranger\n'
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+# Fzf
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+bindkey -s '^g' 'zsh ~/.config/scripts/cheatseet_finder.sh\n'
 
 # Neofetch
 # clear
