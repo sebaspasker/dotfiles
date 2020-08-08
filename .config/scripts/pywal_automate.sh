@@ -10,6 +10,9 @@ cp $file_name ~/.config/wallpaper/wallpaper2.jpg
 # Zathura
 ~/.config/scripts/change_theme_zathura.sh
 
+# Dust
+~/.config/scripts/change_theme_dunst.sh
+
 # st
 cd ~/.config/st && sudo make clean install
 
