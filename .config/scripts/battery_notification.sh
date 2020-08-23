@@ -8,7 +8,7 @@ while true; do
 		if (( $BATT < 2 )); then
 			(( $EMERGENCY_STATE != 4 )) && EMERGENCY_STATE=4 && \
 				systemctl suspend
-		elif (( $BATT > 5 )); then
+		elif (( $BATT < 5 )); then
 			(( $EMERGENCY_STATE != 3 )) && EMERGENCY_STATE=3 && \
 				notify-send "Battery under 5%" -u critical
 		elif (( $BATT < 10 )); then

@@ -2,8 +2,8 @@
 xrandr --output eDP-1 --auto --right-of HDMI-1
 
 # Wallpapers
-feh --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
-# feh --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
+feh --no-fehbg --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
+# feh --no-fehbg --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
 
 # Transparency
 xcompmgr -c &
@@ -12,13 +12,13 @@ xcompmgr -c &
 /home/sebas_pasker/.profile
 
 # Download filter
-/home/sebas_pasker/.config/scripts/filter.sh
+/home/sebas_pasker/.config/scripts/download_filter.sh
 
 # Notifications
 killall notification-daemon &> /dev/null
 
 # Battery notifications
-~/.config/scripts/battery_notifications.sh &
+~/.config/scripts/battery_notification.sh &
 
 datex() {
 	echo "$( date "+%m/%d/%y" )"
@@ -45,10 +45,11 @@ memx() {
 }
 
 cpux() {
-	echo "$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}' \
-			| cut -c1-4)"
+		echo "$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}' \
+						| cut -c1-4)"
 }
 
+cputime=0
 while true; do
 	xsetroot -name "MEM $(memx) - CPU $(cpux)% - LIGHT $(lightx)% - VOL $(volx)% - BATT $(battx)% - TIME $(datex) $(timex)"
 	sleep 1
