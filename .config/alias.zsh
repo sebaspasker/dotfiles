@@ -129,3 +129,14 @@ alias memory='duf'
 
 # Zathura abbreviation
 alias zth="zathura"
+
+# Open pages
+alias duckduckgo="brave https://duckduckgo.com &> /dev/null &"
+alias incognito="brave --incognito &> /dev/null &"
+alias ua="brave https://autentica.cpd.ua.es/cas/login &> /dev/null &"
+alias github="brave https://github.com &> /dev/null &"
+alias whatsapp="brave https://web.whatsapp.com/ &> /dev/null &"
+alias wikipedia="brave https://wikipedia.com &> /dev/null &"
+alias drive="brave https://drive.google.com/ &> /dev/null &"
+alias trello="brave https://trello.com &> /dev/null &"
+alias evernote="brave https://www.evernote.com/Login.action &> /dev/null &"

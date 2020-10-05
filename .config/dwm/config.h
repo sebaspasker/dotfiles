@@ -1,6 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 #include "/home/sebas_pasker/.cache/wal/colors-wal-dwm.h"
 
+// Tlc layout
+#include "tcl.c"
+
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const int gappx     = 7;                 /* gaps between windows */
@@ -13,17 +16,7 @@ static const char *altbarclass = "Polybar";     /* Alternate bar class name */
 static const char *altbarcmd  = "$HOME/.config/polybar/launch.sh"; /* Alternate bar launch command */
 static const char *fonts[]          = { "Terminus:size=14" };
 static const char dmenufont[]       = "Terminus:size=14";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-/* static const char *colors[][3]      = { 
-	               fg         bg         border   
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-};
-*/
+
 static const char *colors[][3]      = {
     /*               fg           bg         border                         */
     [SchemeNorm] = { norm_fg,     norm_bg,   norm_border }, // unfocused wins
@@ -53,6 +46,7 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "|||",      tcl },
 };
 
 /* key definitions */
@@ -94,6 +88,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
