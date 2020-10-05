@@ -1,7 +1,7 @@
 #/bin/zsh
 # Open a particular cheatseet
 
-file=$(find ~/Documents/cheatseets -type f | fzf)
+file=$(find ~/Documents/cheatsheet -type f | fzf)
 if [[ ! -z $file ]]; then
 	termination=$(echo $file | rev | cut -d'.' -f1 | rev)
 	case $termination in 
@@ -11,7 +11,7 @@ if [[ ! -z $file ]]; then
 		"png") 
 			feh $file &> /dev/null &
 			;;
-		"jpg") 
+		"jpg" || "jpeg") 
 			feh $file &> /dev/null &
 			;;
 		*) 

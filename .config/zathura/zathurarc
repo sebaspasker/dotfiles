@@ -40,14 +40,16 @@
 # 
 # 
 
-set recolor-lightcolor "#131112"
-set recolor-darkcolor "#ddd6cb"
+set recolor-lightcolor "#0A1D21"
+set recolor-darkcolor "#b0c6ba"
 
 # Startup options
 # 
 #
 
-set adjust-open width
+# set adjust-open width
 set recolor true
 
-
+# Enably copy to clipboard
+set selection-clipboard clipboard
+ 

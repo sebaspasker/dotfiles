@@ -1,4 +1,4 @@
- "" vimrc configuration version 1.2
+" vimrc configuration version 1.2
 " First self-based vim configuration
 "
 "
@@ -50,12 +50,12 @@ Plugin 'tpope/vim-surround'													" Surround stuff
 Plugin 'tpope/vim-repeat'														" . Repetition
 Plugin 'tpope/vim-commentary' 											" Comments
 Plugin 'zxqfl/tabnine-vim' 													" AI autocompleter
-Plugin  'junegunn/fzf', { 'do': { -> fzf#install()  }} " fzf
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install()  }} " fzf
 Plugin 'junegunn/fzf.vim'
 Plugin 'mattn/emmet-vim'                            " Emmet
-" Probar COC
 Plugin 'tweekmonster/django-plus.vim'               " Django
-Plugin 'ThePrimeagen/vim-be-good'    " Practice :VimBeGood command
+Plugin 'preservim/nerdtree'													" NerdTree
+" Plugin 'neoclide/coc.nvim', {'branch': 'release'}   " Coc
 
 call vundle#end()
 
@@ -234,3 +234,56 @@ set viminfo='10,<100,:100,%,n~/.vim/.viminfo
 " tab, a new split, or in a new vertical split
 
 let g:fzf_preview_window = 'right:60%' " Always file previsualization
+
+fun! GoYCM()
+	nnoremap <buffer> <silent> <leader> gd :YcmCompleter GoTo<CR>
+	nnoremap <buffer> <silent> <leader> gr :YcmCompleter GoToReferences<CR>
+	nnoremap <buffer> <silent> <leader> rr :YcmCompleter RefactorRename<space>
+endfun
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+fun! GoCoc()
+	inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+	inoremap <buffer> <silent><expr> <C-space> coc#refresh()
+
+	" GoTo code navigation
+	nmap <buffer> <leader>gd <Plug>(coc-definition)
+	nmap <buffer> <leader>gy <Plug>(coc-type-definition)
+	nmap <buffer> <leader>gi <Plug>(coc-implementation)
+	nmap <buffer> <leader>gr <Plug>(coc-references)
+	nnoremap <buffer> <leader>cr :CocRestart
+endfun
+
+autocmd Filetype typescript,python,python3 :call GoYCM()
+autocmd Filetype cpp,cxx,h,hpp,c :call GoCoc()
+
+" NerdTree
+map <C-n> :NERDTreeToggle<CR>
+" Close vim if only nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Open NerdTree when vim starts up on opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" When open a saved session don't open NerdTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
+" Open when no vim is specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Clipboard
+set clipboard=unnamedplus
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <C-r><C-o>+
+

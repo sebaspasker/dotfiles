@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono-Regular:pixelsize=16:antialias=true:autohint=true";
-static int borderpx = 2;
+static char *font = "Terminus:pixelsize=20:antialias=true:autohint=true";
+static int borderpx = 20;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -96,7 +96,7 @@ unsigned int tabspaces = 8;
 #include "/home/sebas_pasker/.cache/wal/colors-wal-st.h"
 
 /* bg opacity */
-float alpha = 0.95, alphaUnfocused = 0.75;
+float alpha = 1.0, alphaUnfocused = 0.85;
 
 /* Terminal colors (16 first used in escape sequence) */
 /* static const char *colorname[] = { */

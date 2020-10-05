@@ -12,3 +12,5 @@
 - .zshrc --> zsh and alias
 - .xkindkey --> mouse buttons shortcuts  
 - dunst --> notify-send (pending of configuration)
+
+![](screenshots/screenshot6.jpg)

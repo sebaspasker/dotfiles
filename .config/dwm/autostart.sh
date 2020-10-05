@@ -2,8 +2,8 @@
 xrandr --output eDP-1 --auto --right-of HDMI-1
 
 # Wallpapers
-feh --no-fehbg --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
-# feh --no-fehbg --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
+ #feh --no-fehbg --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
+feh --no-fehbg --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
 
 # Transparency
 xcompmgr -c &
@@ -33,7 +33,7 @@ lightx() {
 }
 
 volx() {
-	echo "$(pamixer --get-volume)"
+	echo "$(pamixer --get-volume-human)"
 }
 
 battx() {
@@ -51,7 +51,7 @@ cpux() {
 
 cputime=0
 while true; do
-	xsetroot -name "MEM $(memx) - CPU $(cpux)% - LIGHT $(lightx)% - VOL $(volx)% - BATT $(battx)% - TIME $(datex) $(timex)"
+	xsetroot -name " $(memx)  $(cpux)%  $(lightx)%  $(volx)  $(battx)%  $(datex) $(timex)"
 	sleep 1
 done &
 

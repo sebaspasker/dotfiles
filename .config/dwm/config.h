@@ -7,11 +7,12 @@ static const int gappx     = 7;                 /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const double defaultopacity = 0.95;       /* General window opacity */
 static const int usealtbar          = 0;        /* 1 means use non-dwm status bar */
 static const char *altbarclass = "Polybar";     /* Alternate bar class name */
 static const char *altbarcmd  = "$HOME/.config/polybar/launch.sh"; /* Alternate bar launch command */
-static const char *fonts[]          = { "JetBrainsMono-Regular:size=12" };
-static const char dmenufont[]       = "JetBrainsMono-Regular:size=12";
+static const char *fonts[]          = { "Terminus:size=14" };
+static const char dmenufont[]       = "Terminus:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -68,6 +69,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", norm_border, "-sf", urg_fg, NULL };
+static const char *networkmanager_dmenucmd[] = { "networkmanager_dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", norm_border, "-sf", urg_fg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[] = {"brave", NULL};
 
@@ -76,6 +78,8 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_i,	     spawn,          SHCMD("transset-df -a --dec .05") },
+	{ MODKEY|ShiftMask,             XK_u,	     spawn,          SHCMD("transset-df -a --inc .05") },
 	{ MODKEY|ShiftMask,             XK_b,	     spawn,          {.v = browser } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -123,7 +127,11 @@ static Key keys[] = {
 	{ 0, XF86XK_MonBrightnessUp,		spawn,		SHCMD("light -A 5") },
 	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("light -U 5") },
 	// SUSPEND
-	{ MODKEY|ShiftMask,             XK_z,		spawn,     SHCMD("systemctl suspend") },
+	{ MODKEY|ShiftMask,             XK_z,		spawn,     SHCMD("~/.config/scripts/block_screen.sh") },
+	// SCREENSHOTS
+	{ MODKEY|ShiftMask,             XK_c,   spawn,     SHCMD("~/.config/scripts/capture_button.sh") },
+	// WIFI
+	{ MODKEY|ShiftMask,             XK_w,   spawn,     {.v = networkmanager_dmenucmd } },
 };
 
 /* button definitions */

@@ -29,6 +29,7 @@ ex ()
 
 
 alias la='ls -al'
+alias l='ls -al'
 
 # cd
 alias ..='cd ..'
@@ -38,11 +39,12 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # pacman
-alias pacsyu='pacman -Syu'              					# update only std pkgs
+alias pacsyu='sudo pacman -Syu'              					# update only std pkgs
 alias yaysua='yay -Sua --no-confirm'    					# update only AUR pkgs
 alias yaysyu='yay -Syu --no-confirm'    					# update std and AUR pkgs
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'  # Not recommended
+alias seeuseless='pacman -Qtdq'
 
 # Directories
 alias cdconf='cd ~/.config'
@@ -56,6 +58,7 @@ alias cdvim='cd ~/.vim'
 alias cddot='cd ~/Documents/dotfiles'
 alias cdmy='cd ~/Documents/myProjects'
 alias cdscripts='cd ~/.config/scripts'
+alias cdw='cd ~/Wallpapers'
 
 # grep
 alias grep='grep --color=auto'
@@ -76,13 +79,15 @@ alias mkd='mkdir'
 
 # Config files
 alias xvim='vim ~/.vim/vimrc'
-alias xzsh='vim ~/.zshrc'
+alias xzsh='vim ~/.config/zsh/.zshrc'
 alias X='vim ~/.config/ranger/rc.conf'
 alias xalias='vim ~/.config/zsh/alias.zsh'
 alias xdwm='vim ~/.config/dwm/config.def.h'
 alias xst='vim ~/.config/st/config.def.h'
 alias xauto='vim ~/.config/dwm/autostart.sh'
 alias xzth='vim ~/.config/zathura/zathurarc'
+alias xmutt='vim ~/.config/mutt/muttrc'
+alias xprofile='vim ~/.profile'
 
 # Github
 alias gtst='git status'
@@ -99,7 +104,8 @@ alias gtlst='git ls-tree'
 alias gtmg='git merge'
 
 # cp
-alias cp='cp -i' # Confirm before overwriting
+alias cp='cp -i' # Confirm before deleting 
+alias rm='rm -i' # Confirm before deleting
 
 # get error messages from journalctl
 alias jctl='journalctl -p 3 -xb'
@@ -110,8 +116,16 @@ alias gpg-check='gpg2 --keyserver-options auto-key-retrieve --verify'
 # receive the key of a developer
 alias gpg-retrieve='gpg2 --keyserver-options auto-key-retrieve --receive-keys'
 
-# switch between shells
+# Switch between shells
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 
+# Screens
+alias individual_screen="bash .screenlayout/individual.sh"
+alias double_screen="bash .screenlayout/double.sh"
 
+# Memory view 
+alias memory='duf'
+
+# Zathura abbreviation
+alias zth="zathura"

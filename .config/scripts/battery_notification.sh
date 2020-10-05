@@ -5,7 +5,7 @@ while true; do
 	BATT="$(cat /sys/class/power_supply/BAT1/capacity)"
 	STATE="$(cat /sys/class/power_supply/BAT1/status)"
 	if [[ "$STATE" == "Discharging" ]]; then
-		if (( $BATT < 2 )); then
+		if (( $BATT <= 2 )); then
 			(( $EMERGENCY_STATE != 4 )) && EMERGENCY_STATE=4 && \
 				systemctl suspend
 		elif (( $BATT < 5 )); then

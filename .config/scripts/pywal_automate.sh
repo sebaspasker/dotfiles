@@ -4,8 +4,10 @@ file_name=$1
 wal -i $file_name
 
 # Change wallpapers
-cp $file_name ~/.config/wallpaper/wallpaper1.jpg 
-cp $file_name ~/.config/wallpaper/wallpaper2.jpg 
+cp -f $file_name /home/sebas_pasker/.config/wallpaper/wallpaper1.jpg
+cp -f $file_name /home/sebas_pasker/.config/wallpaper/wallpaper2.jpg
+convert /home/sebas_pasker/.config/wallpaper/wallpaper1.jpg /home/sebas_pasker/.config/wallpaper/wallpaper1.png
+convert /home/sebas_pasker/.config/wallpaper/wallpaper2.jpg /home/sebas_pasker/.config/wallpaper/wallpaper2.png
 
 # Zathura
 ~/.config/scripts/change_theme_zathura.sh
