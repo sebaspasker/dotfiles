@@ -26,4 +26,5 @@ cd ~/.config/dwm && sudo make clean install
 
 # Add wallpaper to Lightdm
 sudo cp ~/.config/wallpaper/wallpaper1.jpg /usr/share/lightdm-webkit/themes/lightdm-webkit-theme-aether/src/img/wallpapers/
+sudo cp ~/.config/wallpaper/wallpaper2.jpg /usr/share/lightdm-webkit/themes/lightdm-webkit-theme-aether/src/img/wallpapers/
 
