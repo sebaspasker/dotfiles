@@ -44,11 +44,12 @@ alias yaysua='yay -Sua --no-confirm'    					# update only AUR pkgs
 alias yaysyu='yay -Syu --no-confirm'    					# update std and AUR pkgs
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'  # Not recommended
-alias seeuseless='pacman -Qtdq'
+alias seeuseless='pacman -Qtdq && yay -Qtdq'
 
 # Directories
 alias cdconf='cd ~/.config'
 alias cdd='cd ~/Downloads'
+alias cddow='cd ~/Downloads'
 alias cdD='cd ~/Documents'
 alias cdH='cd ~/'
 alias cddwm='cd ~/.config/dwm'
@@ -59,6 +60,18 @@ alias cddot='cd ~/Documents/dotfiles'
 alias cdmy='cd ~/Documents/myProjects'
 alias cdscripts='cd ~/.config/scripts'
 alias cdw='cd ~/Wallpapers'
+alias cdI='cd ~/Images'
+alias cdi='cd ~/Images'
+alias cdW='cd ~/Wallpapers'
+alias cdS='cd ~/.config/scripts'
+alias cds='cd ~/Images/Screenshots'
+
+# Temporary directories
+alias cdua="cd ~/Documents/UA"
+alias cddbd="cd ~/Documents/UA/2º/DBD/"
+alias cdest="cd ~/Documents/UA/2º/Estadística"
+alias cdred="cd ~/Documents/UA/2º/Redes"
+alias cdffi="cd ~/Documents/UA/1º/FFI"
 
 # grep
 alias grep='grep --color=auto'
@@ -88,6 +101,7 @@ alias xauto='vim ~/.config/dwm/autostart.sh'
 alias xzth='vim ~/.config/zathura/zathurarc'
 alias xmutt='vim ~/.config/mutt/muttrc'
 alias xprofile='vim ~/.profile'
+alias xdunst='vim ~/.config/dunst/dunstrc'
 
 # Github
 alias gtst='git status'
@@ -121,9 +135,11 @@ alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 
 # Screens
-alias individual_screen="bash .screenlayout/individual.sh"
-alias double_screen="bash .screenlayout/double.sh"
-
+alias individual_screen="bash ~/.screenlayout/individual.sh"
+alias double_screen="bash ~/.screenlayout/double.sh && \
+											feh --no-fehbg \
+											--bg-center ~/.config/wallpaper/wallpaper1.jpg \
+											--bg-center ~/.config/wallpaper/wallpaper2.jpg"
 # Memory view 
 alias memory='duf'
 
@@ -140,3 +156,6 @@ alias wikipedia="brave https://wikipedia.com &> /dev/null &"
 alias drive="brave https://drive.google.com/ &> /dev/null &"
 alias trello="brave https://trello.com &> /dev/null &"
 alias evernote="brave https://www.evernote.com/Login.action &> /dev/null &"
+
+# Record voice
+alias record_mic="arecord -V stereo -t wav -f dat"

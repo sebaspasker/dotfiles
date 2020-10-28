@@ -40,6 +40,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'ervandew/supertab'
@@ -49,13 +50,42 @@ Plugin 'dylanaraps/wal.vim'													" Pywal theme
 Plugin 'tpope/vim-surround'													" Surround stuff
 Plugin 'tpope/vim-repeat'														" . Repetition
 Plugin 'tpope/vim-commentary' 											" Comments
-Plugin 'zxqfl/tabnine-vim' 													" AI autocompleter
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install()  }} " fzf
 Plugin 'junegunn/fzf.vim'
-Plugin 'mattn/emmet-vim'                            " Emmet
-Plugin 'tweekmonster/django-plus.vim'               " Django
 Plugin 'preservim/nerdtree'													" NerdTree
+Plugin 'wfxr/minimap.vim'                           " Minimap
+Plugin 'machakann/vim-highlightedyank'              " Highlight yank
+Plugin 'zxqfl/tabnine-vim' 													" AI autocompleter
+Plugin 'rhysd/git-messenger.vim'                    " Git messenger
+Plugin 'psliwka/vim-smoothie'                       " Vim smoothie scrolling
+Plugin 'junegunn/vim-slash'                         " Enhancing in-buffer search experience
+
+if has('nvim') || has('patch-8.0.902')
+  Plugin 'mhinz/vim-signify'                        " Vim signify diff in file
+else
+  Plugin 'mhinz/vim-signify', { 'branch': 'legacy'  }
+endif
+
+" Falla con tabnine
+"Plugin 'junegunn/vim-peekaboo'                      " Vim peekaboo extends " and @ 
+
+" Contextual plugins 
+" Plugin 'mattn/emmet-vim'                            " Emmet
+" Plugin 'tweekmonster/django-plus.vim'               " Django
 " Plugin 'neoclide/coc.nvim', {'branch': 'release'}   " Coc
+" Plugin 'stevearc/vim-arduino'                       " Arduino
+" 
+" Look at
+" https://github.com/wfxr/dotfiles/blob/master/vim/vim_plug
+" https://github.com/justinmk/vim-sneak
+" https://github.com/vimwiki/vimwiki
+" 'mbbill/undotree'
+" https://github.com/vim-utils/vim-husk 
+" https://github.com/matze/vim-move
+" https://github.com/junegunn/vim-easy-align 
+" https://github.com/junegunn/vim-slash
+" https://github.com/sirver/UltiSnips
+" https://github.com/Shougo/echodoc.vim
 
 call vundle#end()
 
@@ -66,7 +96,6 @@ colorscheme wal
 
 "Fly mode in auto-pairs
 let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutBackInsert = '<c-x>'
 
 "Tab configuration
 set tabstop=2
@@ -92,18 +121,18 @@ set wrapscan
 set report =1
 " Max highlite the first 200 columns
 set synmaxcol =200
-" "Indent according to previous lìne
+"Indent according to previous lìne
 set autoindent
 " Use inteligent indent for c
 set smartindent
 " Intelligent comment
 set comments=sl:/*,mb:\ *,elx:\ */
 
-" Make code look pretty
+"" Make code look pretty
 let python_highlight_al=1
 syntax on
 
-"Set utf-8 support
+""Set utf-8 support
 set encoding=utf-8
 
 "PowerLine configuration
@@ -188,6 +217,7 @@ let g:html5_event_handler_attributes_complete = 1
 let g:html5_rdfa_attributes_complete = 1
 let g:html5_microdata_attributes_complete = 1
 let g:html5_aria_attributes_complete = 1
+
 " Spell
 " set spell
 set nospell
@@ -235,39 +265,39 @@ set viminfo='10,<100,:100,%,n~/.vim/.viminfo
 
 let g:fzf_preview_window = 'right:60%' " Always file previsualization
 
-fun! GoYCM()
-	nnoremap <buffer> <silent> <leader> gd :YcmCompleter GoTo<CR>
-	nnoremap <buffer> <silent> <leader> gr :YcmCompleter GoToReferences<CR>
-	nnoremap <buffer> <silent> <leader> rr :YcmCompleter RefactorRename<space>
-endfun
+" fun! GoYCM()
+" 	nnoremap <buffer> <silent> <leader> gd :YcmCompleter GoTo<CR>
+" 	nnoremap <buffer> <silent> <leader> gr :YcmCompleter GoToReferences<CR>
+" 	nnoremap <buffer> <silent> <leader> rr :YcmCompleter RefactorRename<space>
+" endfun
 
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+" 	let col = col('.') - 1
+" 	return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
-fun! GoCoc()
-	inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" fun! GoCoc()
+" 	inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" 	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-	inoremap <buffer> <silent><expr> <C-space> coc#refresh()
+" 	inoremap <buffer> <silent><expr> <C-space> coc#refresh()
 
-	" GoTo code navigation
-	nmap <buffer> <leader>gd <Plug>(coc-definition)
-	nmap <buffer> <leader>gy <Plug>(coc-type-definition)
-	nmap <buffer> <leader>gi <Plug>(coc-implementation)
-	nmap <buffer> <leader>gr <Plug>(coc-references)
-	nnoremap <buffer> <leader>cr :CocRestart
-endfun
+" 	" GoTo code navigation
+" 	nmap <buffer> <leader>gd <Plug>(coc-definition)
+" 	nmap <buffer> <leader>gy <Plug>(coc-type-definition)
+" 	nmap <buffer> <leader>gi <Plug>(coc-implementation)
+" 	nmap <buffer> <leader>gr <Plug>(coc-references)
+" 	nnoremap <buffer> <leader>cr :CocRestart
+" endfun
 
-autocmd Filetype typescript,python,python3 :call GoYCM()
-autocmd Filetype cpp,cxx,h,hpp,c :call GoCoc()
+" autocmd Filetype typescript,python,python3 :call GoYCM()
+" autocmd Filetype cpp,cxx,h,hpp,c :call GoCoc()
 
 " NerdTree
-map <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 " Close vim if only nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Open NerdTree when vim starts up on opening a directory
@@ -287,3 +317,38 @@ vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
 
+
+" Arduino
+" nnoremap <buffer> <leader>am :ArduinoVerify<CR>
+" nnoremap <buffer> <leader>au :ArduinoUpload<CR>
+" nnoremap <buffer> <leader>ad :ArduinoUploadAndSerial<CR>
+" nnoremap <buffer> <leader>ab :ArduinoChooseBoard<CR>
+" nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
+
+" Minimap
+" See to only set mouse when in minimap
+let g:minimap_auto_start = 0
+let g:minimap_block_filetypes = ['nerdtree', 'fugitive', 'syntastic']
+" nnoremap <C-m> :MinimapToggle<CR>
+
+" Falla con tabnine arreglar
+" Git messenger
+let g:git_messenger_no_default_mappings = 1
+nmap <C-j> <Plug>(git-messenger)
+
+
+" Mapping	Description
+" q		    Close the popup window
+" o			  older. Back to older commit at the line
+" O			  Opposite to o. Forward to newer commit at the line
+" d			  Toggle diff hunks only related to current file in the commit
+" D			  Toggle all diff hunks in the commit
+" ?	      Show mappings help
+
+" Vim-signify
+" default updatetime 4000ms is not good for async update
+" No compatible que sea async con git messenger
+" set updatetime=100 
+
+" Vim-slash
+noremap <plug>(slash-after) zz

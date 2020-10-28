@@ -20,7 +20,7 @@ while true; do
 		fi
 	else 
 		(( $EMERGENCY_STATE != 0 )) && EMERGENCY_STATE=0
-		[[ $STATE != $STATE_PREV ]] && \
+		[[ $STATE_PREV != "" ]] && [[ $STATE != $STATE_PREV ]] && \
 			notify-send "PC Charging" -u low
 	fi
 	STATE_PREV="$(cat /sys/class/power_supply/BAT1/status)"

@@ -10,7 +10,7 @@ static const int gappx     = 7;                 /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const double defaultopacity = 0.95;       /* General window opacity */
+static const double defaultopacity = 0.92;       /* General window opacity */
 static const int usealtbar          = 0;        /* 1 means use non-dwm status bar */
 static const char *altbarclass = "Polybar";     /* Alternate bar class name */
 static const char *altbarcmd  = "$HOME/.config/polybar/launch.sh"; /* Alternate bar launch command */
@@ -66,6 +66,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *networkmanager_dmenucmd[] = { "networkmanager_dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", norm_border, "-sf", urg_fg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[] = {"brave", NULL};
+
+int n;
 
 #include <X11/XF86keysym.h>
 static Key keys[] = {
@@ -123,6 +125,8 @@ static Key keys[] = {
 	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("light -U 5") },
 	// SUSPEND
 	{ MODKEY|ShiftMask,             XK_z,		spawn,     SHCMD("~/.config/scripts/block_screen.sh") },
+	// FULL SCREENSHOT
+	{ 0, XF86XK_ScreenSaver,        spawn,             SHCMD("~/.config/scripts/capture_full_button.sh") },
 	// SCREENSHOTS
 	{ MODKEY|ShiftMask,             XK_c,   spawn,     SHCMD("~/.config/scripts/capture_button.sh") },
 	// WIFI

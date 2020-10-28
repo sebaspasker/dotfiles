@@ -72,6 +72,8 @@ bindkey '^R' history-incremental-search-backward
 # Fzf
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 bindkey -s '^g' 'zsh ~/.config/scripts/cheatseet_finder.sh\n'
+bindkey -s '^t' 'bpytop\n'
+
 
 # Neofetch
 # clear
@@ -92,3 +94,12 @@ if [ -z "$RUNNING" ]; then
     sudo dockerd > /dev/null 2>&1 &
     disown
 fi
+
+# Preventing nested ranger instances
+ranger() {
+    if [ -z "$RANGER_LEVEL" ]; then
+        /usr/bin/ranger "$@"
+    else
+        exit
+    fi
+}
