@@ -66,12 +66,13 @@ bindkey '^e' edit-command-line
 bindkey -s '^o' 'ranger\n'
 
 # Ctrl+r implementation
-bindkey -v
 bindkey '^R' history-incremental-search-backward
 
 # Fzf
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 bindkey -s '^g' 'zsh ~/.config/scripts/cheatseet_finder.sh\n'
+
+# Bytopp
 bindkey -s '^t' 'bpytop\n'
 
 
@@ -85,7 +86,7 @@ export PROMPT_COMMAND="history -a"
 export HISTCONTROL=ignoredups
 alias l.='ls -d .* --color=auto'dev/null
 
-source /home/sebas_pasker/.config/zsh/alias.zsh
+source /home/sebas_pasker/.config/alias/alias.sh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
 
 # Start Docker daemon automatically when logging in if not running.

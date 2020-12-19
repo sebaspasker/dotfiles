@@ -24,6 +24,9 @@ sed '13,18s/^/\/\//g' ~/.cache/wal/colors-wal-dwm.h > ~/.cache/wal/.colors-dwm.h
 	&& mv ~/.cache/wal/.colors-dwm.h ~/.cache/wal/colors-wal-dwm.h
 cd ~/.config/dwm && sudo make clean install
 
+# dmenu
+
+
 # Add wallpaper to Lightdm
 sudo cp ~/.config/wallpaper/wallpaper1.jpg /usr/share/lightdm-webkit/themes/lightdm-webkit-theme-aether/src/img/wallpapers/
 sudo cp ~/.config/wallpaper/wallpaper2.jpg /usr/share/lightdm-webkit/themes/lightdm-webkit-theme-aether/src/img/wallpapers/

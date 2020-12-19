@@ -1,9 +1,9 @@
 # Screens
-xrandr --output eDP1 --auto --right-of HDMI1
+xrandr --output eDP1 --auto --left-of HDMI1
 
 # Wallpapers
- #feh --no-fehbg --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
-feh --no-fehbg --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
+feh --no-fehbg --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/wallpaper/wallpaper2.jpg 
+#feh --no-fehbg --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
 
 # Transparency
 xcompmgr -c &
@@ -14,8 +14,14 @@ xcompmgr -c &
 # Download filter
 /home/sebas_pasker/.config/scripts/download_filter.sh &> /dev/null 
 
-# Notifications
+# Kill Notifications
 killall notification-daemon &> /dev/null
+
+# Kill Clocks
+killall clock.sh &> /dev/null
+
+# Kill battery_notifications
+killall battery_notifications.sh &> /dev/null
 
 # Battery notifications
 ~/.config/scripts/battery_notification.sh &

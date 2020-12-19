@@ -21,7 +21,7 @@ for file in ~/Downloads/*;do
 		"zip" || "ZIP") [ ! -d ~/Downloads/zipFiles ] && mkdir ~/Downloads/zipFiles
 		mv $file ~/Downloads/zipFiles/
 		;;
-		"jpg" || "JPG" || "jpeg" || "JPEG") [ ! -d ~/Downloads/jpgFiles ] && mkdir ~/Downloads/jpgFiles
+		"jpg" || "JPG" || "jpeg" || "JPEG" || "png" || "PNG") [ ! -d ~/Downloads/jpgFiles ] && mkdir ~/Downloads/jpgFiles
 		mv $file ~/Downloads/jpgFiles/
 		;;
 		"jar" || "JAR") [ ! -d ~/Downloads/jarFiles ] && mkdir ~/Downloads/jarFiles

@@ -18,4 +18,10 @@ cp ~/.config/zsh/.zshrc ~/Documents/dotfiles/.zshrc
 # dunst
 cp ~/.config/dunst/dunstrc ~/Documents/dotfiles/.config/dunst/dunstrc
 # alias
-cp ~/.config/zsh/alias.zsh ~/Documents/dotfiles/.config/
+cp ~/.config/alias/alias.sh ~/Documents/dotfiles/.config/
+# fish 
+cp ~/.config/fish/config.fish ~/Documents/dotfiles/.config/fish/
+cp ~/.config/fish/keybind.fish ~/Documents/dotfiles/.config/fish/
+cp ~/.config/fish/abbr.fish ~/Documents/dotfiles/.config/fish/
+# starship
+cp ~/.config/starship.toml ~/Documents/dotfiles/.config/starship.toml

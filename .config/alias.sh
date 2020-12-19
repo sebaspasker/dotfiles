@@ -45,6 +45,7 @@ alias yaysyu='yay -Syu --no-confirm'    					# update std and AUR pkgs
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'  # Not recommended
 alias seeuseless='pacman -Qtdq && yay -Qtdq'
+alias seevuln='arch-audit'
 
 # Directories
 alias cdconf='cd ~/.config'
@@ -94,7 +95,7 @@ alias mkd='mkdir'
 alias xvim='vim ~/.vim/vimrc'
 alias xzsh='vim ~/.config/zsh/.zshrc'
 alias X='vim ~/.config/ranger/rc.conf'
-alias xalias='vim ~/.config/zsh/alias.zsh'
+alias xalias='vim ~/.config/alias/alias.sh'
 alias xdwm='vim ~/.config/dwm/config.def.h'
 alias xst='vim ~/.config/st/config.def.h'
 alias xauto='vim ~/.config/dwm/autostart.sh'
@@ -133,13 +134,18 @@ alias gpg-retrieve='gpg2 --keyserver-options auto-key-retrieve --receive-keys'
 # Switch between shells
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
 # Screens
-alias individual_screen="bash ~/.screenlayout/individual.sh"
+alias individual_screen="bash ~/.screenlayout/individual.sh && \
+														feh --no-fehbg \
+														--bg-fill ~/.config/wallpaper/wallpaper1.jpg \
+														--bg-fill ~/.config/wallpaper/wallpaper2.jpg"
 alias double_screen="bash ~/.screenlayout/double.sh && \
 											feh --no-fehbg \
-											--bg-center ~/.config/wallpaper/wallpaper1.jpg \
-											--bg-center ~/.config/wallpaper/wallpaper2.jpg"
+											--bg-fill ~/.config/wallpaper/wallpaper1.jpg \
+											--bg-fill ~/.config/wallpaper/wallpaper2.jpg"
+
 # Memory view 
 alias memory='duf'
 

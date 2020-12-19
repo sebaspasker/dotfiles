@@ -41,7 +41,8 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'jiangmiao/auto-pairs'                      
+Plugin 'zxqfl/tabnine-vim' 													" AI autocompleter
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'ervandew/supertab'
 Plugin 'vim-syntastic/syntastic'
@@ -53,9 +54,8 @@ Plugin 'tpope/vim-commentary' 											" Comments
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install()  }} " fzf
 Plugin 'junegunn/fzf.vim'
 Plugin 'preservim/nerdtree'													" NerdTree
-Plugin 'wfxr/minimap.vim'                           " Minimap
+" Plugin 'wfxr/minimap.vim'                           " Minimap
 Plugin 'machakann/vim-highlightedyank'              " Highlight yank
-Plugin 'zxqfl/tabnine-vim' 													" AI autocompleter
 Plugin 'rhysd/git-messenger.vim'                    " Git messenger
 Plugin 'psliwka/vim-smoothie'                       " Vim smoothie scrolling
 Plugin 'junegunn/vim-slash'                         " Enhancing in-buffer search experience
@@ -180,7 +180,7 @@ let g:syntastic_check_on_wq = 0
 " HTML
 let g:syntastic_html_checkers = ['validator']
 let g:syntastic_python_checkers = ['python', 'flake8']
-let g:syntastic_cpp_checkers = ['']
+let g:syntastic_cpp_checkers = ['gcc']
 set completeopt+=preview
 
 " See correct configuration YouCompleteMe
@@ -263,6 +263,10 @@ set viminfo='10,<100,:100,%,n~/.vim/.viminfo
 " Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
 " tab, a new split, or in a new vertical split
 
+nnoremap <C-h> :Files .<CR>
+nnoremap <C-j> :Buffers<CR>
+nnoremap <C-k> :History<CR>
+nnoremap <C-l> :Ag .<CR>
 let g:fzf_preview_window = 'right:60%' " Always file previsualization
 
 " fun! GoYCM()
@@ -327,14 +331,14 @@ imap <C-v> <C-r><C-o>+
 
 " Minimap
 " See to only set mouse when in minimap
-let g:minimap_auto_start = 0
-let g:minimap_block_filetypes = ['nerdtree', 'fugitive', 'syntastic']
+" let g:minimap_auto_start = 0
+" let g:minimap_block_filetypes = ['nerdtree', 'fugitive', 'syntastic']
 " nnoremap <C-m> :MinimapToggle<CR>
 
 " Falla con tabnine arreglar
 " Git messenger
 let g:git_messenger_no_default_mappings = 1
-nmap <C-j> <Plug>(git-messenger)
+nmap <C-p> <Plug>(git-messenger)
 
 
 " Mapping	Description

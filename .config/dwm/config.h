@@ -4,12 +4,16 @@
 // Tlc layout
 #include "tcl.c"
 
+// fibonacci layout
+#include "fibonacci.c"
+
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const int gappx     = 7;                 /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int extrabar 					= 1;	      /* 0 means no extra bar */
 static const double defaultopacity = 0.92;       /* General window opacity */
 static const int usealtbar          = 0;        /* 1 means use non-dwm status bar */
 static const char *altbarclass = "Polybar";     /* Alternate bar class name */
@@ -32,8 +36,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "spotify",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "arduino",  NULL,       NULL,       0,            0,           -1 },
+	{ "Ghidra",   NULL,       NULL,       0,            1,           -1 },
+	{ "oracle-sqldeveloper",  NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -47,6 +54,7 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ "|||",      tcl },
+	{ "[\\]",     fibonacci },
 };
 
 /* key definitions */
@@ -62,7 +70,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", norm_border, "-sf", urg_fg, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", sel_bg, "-nf", norm_fg, "-sb", norm_border, "-sf", urg_fg, NULL };
 static const char *networkmanager_dmenucmd[] = { "networkmanager_dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", norm_border, "-sf", urg_fg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[] = {"brave", NULL};
@@ -91,6 +99,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -126,11 +135,11 @@ static Key keys[] = {
 	// SUSPEND
 	{ MODKEY|ShiftMask,             XK_z,		spawn,     SHCMD("~/.config/scripts/block_screen.sh") },
 	// FULL SCREENSHOT
-	{ 0, XF86XK_ScreenSaver,        spawn,             SHCMD("~/.config/scripts/capture_full_button.sh") },
+	{ MODKEY|ShiftMask,             XK_x,   spawn,     SHCMD("~/.config/scripts/capture_full_button.sh") },
 	// SCREENSHOTS
 	{ MODKEY|ShiftMask,             XK_c,   spawn,     SHCMD("~/.config/scripts/capture_button.sh") },
-	// WIFI
-	{ MODKEY|ShiftMask,             XK_w,   spawn,     {.v = networkmanager_dmenucmd } },
+	// WIFI CONNECTION FILE
+	{ MODKEY|ShiftMask,             XK_w,   spawn,     SHCMD("nm-connection-editor") },
 };
 
 /* button definitions */
