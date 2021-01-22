@@ -6,7 +6,7 @@ feh --no-fehbg --bg-fill ~/.config/wallpaper/wallpaper1.jpg --bg-fill ~/.config/
 #feh --no-fehbg --bg-center ~/.config/wallpaper/wallpaper1.jpg --bg-center ~/.config/wallpaper/wallpaper2.jpg
 
 # Transparency
-xcompmgr -c &
+xcompmgr -c -C &
 
 # Profile
 /home/sebas_pasker/.profile
