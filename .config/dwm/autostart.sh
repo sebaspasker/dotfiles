@@ -23,6 +23,9 @@ killall clock.sh &> /dev/null
 # Kill battery_notifications
 killall battery_notifications.sh &> /dev/null
 
+# Kill all autohibernate
+killall autohibernate.sh &> /dev/null
+
 # Battery notifications
 ~/.config/scripts/battery_notification.sh &
 
@@ -31,6 +34,9 @@ killall battery_notifications.sh &> /dev/null
 
 # Clock 
 ~/.config/scripts/clock.sh &> /dev/null &
+
+# Autohibernate
+#~/.config/scripts/autohibernate.sh &> /dev/null &
 
 # Albert (Aplication like Alfons for linux)
 # Shift|Alt|SuperKey(\)

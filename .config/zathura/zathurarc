@@ -40,8 +40,8 @@
 # 
 # 
 
-set recolor-lightcolor "#000000"
-set recolor-darkcolor "#f1f1f1"
+set recolor-lightcolor "#201e25"
+set recolor-darkcolor "#eae5d8"
 
 # Startup options
 # 

@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 datex() {
-	echo "$( date "+%m/%d/%y"  )"
+	echo "$( date "+%d/%m/%y"  )"
 }
 
 timex() {

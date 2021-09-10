@@ -1,4 +1,4 @@
-" vimrc configuration version 1.2
+"" vimrc configuration version 1.2
 " First self-based vim configuration
 "
 "
@@ -35,6 +35,7 @@
 set nocompatible
 filetype off
 
+call has('python3')
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -59,6 +60,12 @@ Plugin 'machakann/vim-highlightedyank'              " Highlight yank
 Plugin 'rhysd/git-messenger.vim'                    " Git messenger
 Plugin 'psliwka/vim-smoothie'                       " Vim smoothie scrolling
 Plugin 'junegunn/vim-slash'                         " Enhancing in-buffer search experience
+
+" Configure
+Plugin 'vim-vdebug/vdebug'                          " Debugger
+
+" Aprender funcionamiento
+Plugin 'wincent/command-t'													" Command T
 
 if has('nvim') || has('patch-8.0.902')
   Plugin 'mhinz/vim-signify'                        " Vim signify diff in file
@@ -181,6 +188,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers = ['validator']
 let g:syntastic_python_checkers = ['python', 'flake8']
 let g:syntastic_cpp_checkers = ['gcc']
+let g:syntastic_java_checkers = ['javac']
+let g:syntastic_go_checkers = ['go', 'gofmt']
+let g:syntastic_nasm_checkers = ['nasm']
 set completeopt+=preview
 
 " See correct configuration YouCompleteMe
@@ -218,8 +228,9 @@ let g:html5_rdfa_attributes_complete = 1
 let g:html5_microdata_attributes_complete = 1
 let g:html5_aria_attributes_complete = 1
 
+autocmd BufNewFile,BufRead *.asm set filetype=nasm
+
 " Spell
-" set spell
 set nospell
 set spelllang=es_es
 
@@ -263,11 +274,30 @@ set viminfo='10,<100,:100,%,n~/.vim/.viminfo
 " Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
 " tab, a new split, or in a new vertical split
 
-nnoremap <C-h> :Files .<CR>
-nnoremap <C-j> :Buffers<CR>
-nnoremap <C-k> :History<CR>
-nnoremap <C-l> :Ag .<CR>
+nnoremap <C-h> :call Ffz("Files", "")<left><left>
+nnoremap <C-j> :call Ffz("Buffers", "")<left><left>
+nnoremap <C-k> :call Ffz("History", "")<left><left>
+nnoremap <C-l> :call Ffz("Ag", "")<left><left>
 let g:fzf_preview_window = 'right:60%' " Always file previsualization
+
+fun! Ffz(mode, option)
+	if a:option == "1"
+		let Ffz_var = a:mode . " ."
+		execute Ffz_var
+	elseif a:option == "2"
+		let Ffz_var = a:mode . " .."
+		execute Ffz_var
+	elseif a:option == "3"
+		let Ffz_var = a:mode . " ../.."
+		execute Ffz_var
+	else 
+		let Ffz_var = a:mode . " "  . a:option
+		execute Ffz_var
+	endif
+endfun
+
+" fun! Sfun(fun_name)
+" 	let search_fun = 
 
 " fun! GoYCM()
 " 	nnoremap <buffer> <silent> <leader> gd :YcmCompleter GoTo<CR>
@@ -330,7 +360,6 @@ imap <C-v> <C-r><C-o>+
 " nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
 
 " Minimap
-" See to only set mouse when in minimap
 " let g:minimap_auto_start = 0
 " let g:minimap_block_filetypes = ['nerdtree', 'fugitive', 'syntastic']
 " nnoremap <C-m> :MinimapToggle<CR>
